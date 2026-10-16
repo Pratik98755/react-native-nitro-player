@@ -58,6 +58,10 @@ final class HybridTrackPlayer: HybridTrackPlayerSpec {
     enqueue { self.core.pauseOnQueue() }
   }
 
+  func stop() throws -> Promise<Void> {
+    enqueue { self.core.stopOnQueue() }
+  }
+
   func seek(position: Double) throws -> Promise<Void> {
     enqueue { self.core.seekOnQueue(position: position) }
   }

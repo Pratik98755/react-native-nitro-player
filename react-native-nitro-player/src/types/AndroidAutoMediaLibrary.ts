@@ -69,6 +69,7 @@ export type SessionButtonIcon =
   | 'thumb_up_filled'
   | 'plus'
   | 'check'
+  | 'stop'
 
 /** App-defined button beside the transport controls in Android Auto and the notification */
 export interface SessionButton {

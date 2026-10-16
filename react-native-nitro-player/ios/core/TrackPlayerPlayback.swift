@@ -41,6 +41,17 @@ extension TrackPlayerCore {
   }
   func pause() async { await withPlayerQueueNoThrow { self.pauseOnQueue() } }
 
+  /// Full stop: pause, drop every queued item, forget the temporary queues and
+  /// clear Now Playing. The player object stays, so loadPlaylist / playSong can start again.
+  func stopOnQueue() {
+    pauseOnQueue()
+    playNextStack.removeAll()
+    upNextQueue.removeAll()
+    currentTrackIndex = -1
+    if let player = player { removeAllItemsCancellingLoads(player) }
+    MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
+  }
+
   func seekOnQueue(position: Double) {
     if isCasting {
       castManager?.seek(to: position)

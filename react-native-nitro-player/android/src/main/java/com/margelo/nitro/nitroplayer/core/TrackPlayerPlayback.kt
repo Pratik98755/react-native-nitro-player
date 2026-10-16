@@ -32,6 +32,33 @@ internal fun TrackPlayerCore.pauseOnQueue() {
     audioFocusController?.abandon()
 }
 
+suspend fun TrackPlayerCore.stop() = withPlayerContext { stopOnQueue() }
+
+/**
+ * Full stop: pause, go idle, drop every loaded item, and forget the temporary queues.
+ *
+ * An idle player with an empty timeline is what makes Media3 remove the media
+ * notification, so no service teardown is needed. The service and its binding stay
+ * intact, which keeps the player usable for a later loadPlaylist / playSong.
+ */
+internal fun TrackPlayerCore.stopOnQueue() {
+    exo.pause()
+    exo.stop()
+    exo.clearMediaItems()
+    audioFocusController?.abandon()
+
+    val hadTemporaryTracks = playNextStack.isNotEmpty() || upNextQueue.isNotEmpty()
+    playNextStack.clear()
+    upNextQueue.clear()
+    currentTemporaryType = TrackPlayerCore.TemporaryType.NONE
+    previousMediaItem = null
+    currentTrackIndex = -1
+    if (hadTemporaryTracks) notifyTemporaryQueueChange()
+
+    updateJsKeepAlive()
+    emitStateChange(Reason.USER_ACTION)
+}
+
 suspend fun TrackPlayerCore.seek(position: Double) = withPlayerContext { seekOnQueue(position) }
 
 internal fun TrackPlayerCore.seekOnQueue(position: Double) {

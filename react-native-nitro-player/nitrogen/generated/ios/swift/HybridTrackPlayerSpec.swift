@@ -15,6 +15,7 @@ public protocol HybridTrackPlayerSpec_protocol: HybridObject {
   // Methods
   func play() throws -> Promise<Void>
   func pause() throws -> Promise<Void>
+  func stop() throws -> Promise<Void>
   func playSong(songId: String, fromPlaylist: String?) throws -> Promise<Void>
   func skipToNext() throws -> Promise<Void>
   func skipToIndex(index: Double) throws -> Promise<Bool>

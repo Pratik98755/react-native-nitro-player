@@ -72,6 +72,7 @@ class HybridAndroidAutoMediaLibrary : HybridAndroidAutoMediaLibrarySpec() {
                 "thumb_up_filled" to CommandButton.ICON_THUMB_UP_FILLED,
                 "plus" to CommandButton.ICON_PLUS,
                 "check" to CommandButton.ICON_CHECK_CIRCLE_FILLED,
+                "stop" to CommandButton.ICON_STOP,
             )
     }
 }

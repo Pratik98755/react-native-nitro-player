@@ -84,6 +84,14 @@ export interface TrackPlayer extends HybridObject<{
 }> {
   play(): Promise<void>
   pause(): Promise<void>
+  /**
+   * Stop playback and empty the player: pauses, clears the loaded queue and the
+   * play-next / up-next stacks, and releases audio focus. On Android this also
+   * removes the media notification (an idle player with no items has none);
+   * on iOS it clears the Now Playing info. The player stays usable: call
+   * `loadPlaylist` / `playSong` to start again.
+   */
+  stop(): Promise<void>
   playSong(songId: string, fromPlaylist?: string): Promise<void>
   skipToNext(): Promise<void>
   skipToIndex(index: number): Promise<boolean>

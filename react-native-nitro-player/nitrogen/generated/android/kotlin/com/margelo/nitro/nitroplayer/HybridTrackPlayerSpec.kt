@@ -39,6 +39,10 @@ abstract class HybridTrackPlayerSpec: HybridObject() {
   
   @DoNotStrip
   @Keep
+  abstract fun stop(): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
   abstract fun playSong(songId: String, fromPlaylist: String?): Promise<Unit>
   
   @DoNotStrip

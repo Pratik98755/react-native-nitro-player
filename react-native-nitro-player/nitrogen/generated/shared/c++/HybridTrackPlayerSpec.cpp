@@ -16,6 +16,7 @@ namespace margelo::nitro::nitroplayer {
     registerHybrids(this, [](Prototype& prototype) {
       prototype.registerHybridMethod("play", &HybridTrackPlayerSpec::play);
       prototype.registerHybridMethod("pause", &HybridTrackPlayerSpec::pause);
+      prototype.registerHybridMethod("stop", &HybridTrackPlayerSpec::stop);
       prototype.registerHybridMethod("playSong", &HybridTrackPlayerSpec::playSong);
       prototype.registerHybridMethod("skipToNext", &HybridTrackPlayerSpec::skipToNext);
       prototype.registerHybridMethod("skipToIndex", &HybridTrackPlayerSpec::skipToIndex);

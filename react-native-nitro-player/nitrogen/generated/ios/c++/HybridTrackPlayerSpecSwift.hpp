@@ -115,6 +115,14 @@ namespace margelo::nitro::nitroplayer {
       auto __value = std::move(__result.value());
       return __value;
     }
+    inline std::shared_ptr<Promise<void>> stop() override {
+      auto __result = _swiftPart.stop();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
     inline std::shared_ptr<Promise<void>> playSong(const std::string& songId, const std::optional<std::string>& fromPlaylist) override {
       auto __result = _swiftPart.playSong(songId, fromPlaylist);
       if (__result.hasError()) [[unlikely]] {

@@ -24,6 +24,8 @@ class ExoPlayerCore(
 
     fun pause() = player.pause()
 
+    fun stop() = player.stop()
+
     fun seekTo(positionMs: Long) = player.seekTo(positionMs)
 
     fun seekToNext() = player.seekToNextMediaItem()

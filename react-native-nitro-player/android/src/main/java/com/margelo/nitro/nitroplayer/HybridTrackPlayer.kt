@@ -30,6 +30,7 @@ import com.margelo.nitro.nitroplayer.core.setVolumeOnQueue
 import com.margelo.nitro.nitroplayer.core.skipToIndexInternal
 import com.margelo.nitro.nitroplayer.core.skipToNextOnQueue
 import com.margelo.nitro.nitroplayer.core.skipToPreviousOnQueue
+import com.margelo.nitro.nitroplayer.core.stopOnQueue
 import com.margelo.nitro.nitroplayer.core.updateTracksOnQueue
 
 @DoNotStrip
@@ -72,6 +73,8 @@ class HybridTrackPlayer : HybridTrackPlayerSpec() {
     override fun play(): Promise<Unit> = enqueue { core.playOnQueue() }
 
     override fun pause(): Promise<Unit> = enqueue { core.pauseOnQueue() }
+
+    override fun stop(): Promise<Unit> = enqueue { core.stopOnQueue() }
 
     override fun seek(position: Double): Promise<Unit> = enqueue { core.seekOnQueue(position) }
 
